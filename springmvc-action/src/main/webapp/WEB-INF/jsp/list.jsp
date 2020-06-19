@@ -1,0 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+
+%>
+<html>
+<head>
+    <base href="<%=basePath %>"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>list</title>
+</head>
+<body>
+
+    <h4>list页面</h4>
+</body>
+</html>
