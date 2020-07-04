@@ -2,10 +2,13 @@
 ##### spring mvc 文件上传和下载
 
 
-
-multipart格式的数据会将一个表单拆分为多个部分（part），每个部分对应一个输入域。在一般的表单输入域中，
-它所对应的部分中会放置文本型数据，但是如果上传文件的话，它所对应的部分可以是二进制
-
+multipart格式的数据会将一个表单拆分为多个部分（part），每个部分对应一个输入域。
+在一般的表单输入域中，它所对应的部分中会放置文本型数据，但是如果上传文件的话，它所对应的部分可以是二进制
+    
+    表单：
+        基本类型： 文件类型数据
+        文件： 二进制文件
+    
 
 ### 实验步骤
 
@@ -41,7 +44,10 @@ multipart格式的数据会将一个表单拆分为多个部分（part），每�
     outputStream.write(bytes);
     outputStream.close();
     
+    
+    
 2. 转换成输入流，inputStream
+
 
 
     InputStream inputStream = file.getInputStream();
@@ -52,6 +58,8 @@ multipart格式的数据会将一个表单拆分为多个部分（part），每�
         outputStream.write(bytes, 0, i);
     }
     outputStream.close();    
+
+
 
 3. 使用方法 transferTo(new File()) 方法。
 
@@ -65,6 +73,8 @@ multipart格式的数据会将一个表单拆分为多个部分（part），每�
 1. 表单上传，指明 enctype="multipart/form-data"
 
 
+
+
     <form method="post" action="form" enctype="multipart/form-data">
         <input type="text" name="name"/>
         <input type="file" name="file"/>
@@ -72,8 +82,12 @@ multipart格式的数据会将一个表单拆分为多个部分（part），每�
     </form>
     
     
+    
+    
 2. ajax 文件上传； 需要 dataForm 对象封装。
 
+    
+    
     
     //FormData是ajax定义的接口,可以模拟键值对向服务器提交数据
     //FormData类型的作用是可以提交文本数据,还可以提交二进制数据.
@@ -95,9 +109,12 @@ multipart格式的数据会将一个表单拆分为多个部分（part），每�
     })
     
     
+    
+    
 ##### 文件下载的三种方式
 
 1.  返回ResponseEntity
+
 
 
     public ResponseEntity<byte[]> download(String fileName, File file) throws IOException {
@@ -108,7 +125,10 @@ multipart格式的数据会将一个表单拆分为多个部分（part），每�
             return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file), headers, HttpStatus.CREATED);
     }
     
+    
+    
 2. os.write(FileUtils.readFileToByteArray(file));
+
 
 
     OutputStream os = res.getOutputStream();
